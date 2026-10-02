@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Michelle 💜</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Segoe UI", system-ui, sans-serif;
+            background: #090510;
+            color: #eee;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Corazones Flotantes */
+        .heart {
+            position: fixed;
+            bottom: -40px;
+            color: rgba(192, 132, 252, 0.15);
+            font-size: 22px;
+            animation: subir 10s linear infinite;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        @keyframes subir {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+            20% { opacity: 1; }
+            100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* Contenedor Principal */
+        .contenedor {
+            position: relative;
+            z-index: 2;
+            width: 92%;
+            max-width: 680px;
+            margin: auto;
+            padding: 20px 0 60px;
+        }
+
+        /* Hero / Portada */
+        .portada {
+            min-height: 85vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .icono-principal {
+            font-size: 70px;
+            animation: latido 1.8s infinite;
+            margin-bottom: 15px;
+            filter: drop-shadow(0 0 25px #a855f7);
+        }
+
+        @keyframes latido {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .portada h1 {
+            font-size: clamp(45px, 10vw, 75px);
+            color: #c084fc;
+            text-shadow: 0 0 20px rgba(168, 85, 247, 0.6);
+            margin-bottom: 10px;
+            letter-spacing: -1px;
+        }
+
+        .portada p {
+            color: #bfa8d3;
+            font-size: 18px;
+            max-width: 500px;
+            line-height: 1.6;
+        }
+
+        /* Botones */
+        .btn {
+            margin-top: 25px;
+            padding: 14px 30px;
+            border: none;
+            border-radius: 30px;
+            background: linear-gradient(135deg, #7e22ce, #a855f7);
+            color: white;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 0 20px rgba(168, 85, 247, 0.35);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 30px rgba(168, 85, 247, 0.6);
+        }
+
+        .btn-secundario {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(192, 132, 252, 0.25);
+            box-shadow: none;
+            color: #d8c4e8;
+        }
+
+        .btn-secundario:hover {
+            background: rgba(192, 132, 252, 0.15);
+        }
+
+        /* Tarjetas de Secciones */
+        .seccion {
+            margin: 50px 0;
+        }
+
+        .tarjeta {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(192, 132, 252, 0.12);
+            border-radius: 24px;
+            padding: 30px 25px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .subtitulo {
+            text-align: center;
+            color: #c084fc;
+            font-size: 24px;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        /* Musica */
+        .spotify-frame {
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+        }
+
+        .spotify-btn-container {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        /* Carta */
+        .texto-carta {
+            font-size: 17px;
+            line-height: 1.85;
+            color: #d8cde3;
+        }
+
+        .texto-carta p {
+            margin-bottom: 18px;
+        }
+
+        .destacado {
+            color: #e9d5ff;
+            font-size: 18px;
+            text-align: center;
+            margin: 25px 0;
+            font-weight: 500;
+        }
+
+        .firma {
+            text-align: right;
+            color: #c084fc;
+            font-size: 18px;
+            margin-top: 30px;
+        }
+
+        /* Sobres */
+        .grid-sobres {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 15px;
+        }
+
+        .sobre-item {
+            background: rgba(126, 34, 206, 0.1);
+            border: 1px solid rgba(192, 132, 252, 0.2);
+            border-radius: 18px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .sobre-item:hover {
+            background: rgba(126, 34, 206, 0.22);
+            border-color: #c084fc;
+        }
+
+        .sobre-icono {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+
+        .sobre-titulo {
+            color: #e2d4ee;
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .sobre-texto {
+            display: none;
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px dashed rgba(192, 132, 252, 0.25);
+            color: #ffffff;
+            font-size: 14px;
+            line-height: 1.6;
+            animation: fadeIn 0.4s ease;
+        }
+
+        /* Razones Visor */
+        .razones-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .barra-bg {
+            width: 100%;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .barra-fill {
+            height: 100%;
+            width: 1%;
+            background: linear-gradient(90deg, #7e22ce, #c084fc);
+            transition: width 0.3s ease;
+        }
+
+        .card-razon {
+            min-height: 150px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            width: 100%;
+            border-radius: 18px;
+            background: rgba(126, 34, 206, 0.08);
+            border: 1px solid rgba(192, 132, 252, 0.18);
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .num-razon {
+            color: #c084fc;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .txt-razon {
+            color: #ffffff;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        .botones-razon {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        /* Mensaje Secreto */
+        #secreto {
+            display: none;
+            margin-top: 20px;
+            text-align: center;
+            line-height: 1.7;
+            color: #d8cde3;
+            animation: fadeIn 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Pie de pagina */
+        .footer {
+            text-align: center;
+            padding: 60px 0 20px;
+        }
+
+        .footer h2 {
+            font-size: 32px;
+            color: #c084fc;
+            margin-bottom: 10px;
+        }
+
+        .footer p {
+            color: #bfa8d3;
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+        .credito {
+            margin-top: 30px;
+            color: #5d4d68;
+            font-size: 12px;
+        }
+
+        @media(max-width: 600px) {
+            .tarjeta { padding: 22px 18px; }
+            .texto-carta { font-size: 16px; }
+            .subtitulo { font-size: 21px; }
+            .txt-razon { font-size: 16px; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Corazones -->
+    <div class="heart" style="left:10%; animation-delay:0s;">♥</div>
+    <div class="heart" style="left:30%; animation-delay:3s;">♥</div>
+    <div class="heart" style="left:50%; animation-delay:1s;">♥</div>
+    <div class="heart" style="left:70%; animation-delay:4s;">♥</div>
+    <div class="heart" style="left:90%; animation-delay:2s;">♥</div>
+
+    <main class="contenedor">
+
+        <!-- Portada -->
+        <div class="portada">
+            <div class="icono-principal">💜</div>
+            <h1>Michelle</h1>
+            <p>Hice esto para ti porque queria darte algo que pudieras guardar y recordar</p>
+            <button class="btn" onclick="irA('musica')">Para ti 💜</button>
+        </div>
+
+        <!-- Musica -->
+        <section id="musica" class="seccion">
+            <div class="tarjeta">
+                <div class="subtitulo">Una cancion para acompañar 🎶</div>
+                <div class="spotify-frame" id="spotifyPlayer"></div>
+                <div class="spotify-btn-container">
+                    <a href="https://open.spotify.com/playlist/786RiWnYfyxfXLB8nNBLAV" target="_blank" class="btn btn-secundario">
+                        Abrir playlist en Spotify 🎧
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Carta -->
+        <section id="carta" class="seccion">
+            <div class="tarjeta">
+                <div class="subtitulo">Para ti, Michelle 💜</div>
+                <div class="texto-carta">
+                    <p>Michelle, queria hacer algo diferente para ti, algo que no fuera solamente un mensaje mas, queria dejarte algo que realmente fuera pensado para ti</p>
+                    <p>Hemos pasado por muchas cosas, hemos tenido momentos muy bonitos, pero tambien momentos bastante complicados, aun con todo eso, sigues siendo una persona demasiado importante para mi</p>
+                    <p>No quiero hablarte solamente de promesas ni decirte que todo sera perfecto a partir de ahora, porque se que las cosas no funcionan asi</p>
+                    <p>Lo que quiero es que, poco a poco, puedas notar que realmente estoy intentando hacer las cosas bien, no solamente decirte que quiero cambiar, sino demostrartelo con mis acciones</p>
+                    <p class="destacado">Quiero que esta vez puedas verlo por ti misma</p>
+                    <p>Quiero seguir compartiendo momentos contigo, seguir conociendote, seguir aprendiendo de ti y poder construir algo bonito juntos, sin apresurarnos y sin querer que todo sea perfecto</p>
+                    <p>Porque a pesar de todo lo que ha pasado, yo sigo teniendo muchisimo cariño por ti y sigo queriendo que seas parte de mi vida</p>
+                    <p>Tal vez no siempre sepa como decirte todo lo que siento, pero espero que con el tiempo pueda demostrartelo de una forma que realmente puedas sentir</p>
+                    <p class="destacado">Te quiero muchotototototote, mi vida 💞</p>
+                    <div class="firma">
+                        Para ti siempre, 💜<br>Ricardo
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sobres -->
+        <section class="seccion">
+            <div class="tarjeta">
+                <div class="subtitulo">Sobres para cuando lo necesites ✉️</div>
+                <p style="text-align: center; color: #bfa8d3; font-size: 13px; margin-bottom: 18px;">(Tocalos cada vez que quieras, el mensaje cambia)</p>
+                <div class="grid-sobres">
+                    
+                    <div class="sobre-item" onclick="abrirSobreDinamico(this, 'malDia')">
+                        <div class="sobre-icono">🌧</div>
+                        <div class="sobre-titulo">Abre esto cuando tengas un mal dia</div>
+                        <div class="sobre-texto"></div>
+                    </div>
+
+                    <div class="sobre-item" onclick="abrirSobreDinamico(this, 'extranes')">
+                        <div class="sobre-icono">🧸</div>
+                        <div class="sobre-titulo">Abre esto cuando me extrañes</div>
+                        <div class="sobre-texto"></div>
+                    </div>
+
+                    <div class="sobre-item" onclick="abrirSobreDinamico(this, 'dormir')">
+                        <div class="sobre-icono">🌙</div>
+                        <div class="sobre-titulo">Abre esto cuando no puedas dormir</div>
+                        <div class="sobre-texto"></div>
+                    </div>
+
+                    <div class="sobre-item" onclick="abrirSobreDinamico(this, 'dudas')">
+                        <div class="sobre-icono">✨</div>
+                        <div class="sobre-titulo">Abre esto si dudas de lo importante que eres</div>
+                        <div class="sobre-texto"></div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- 100 Razones -->
+        <section class="seccion">
+            <div class="tarjeta">
+                <div class="subtitulo">100 razones por las que me gustas 💜</div>
+
+                <div class="razones-box">
+                    <div class="barra-bg">
+                        <div class="barra-fill" id="barraFill"></div>
+                    </div>
+
+                    <div class="card-razon" id="cardRazon">
+                        <div class="num-razon" id="numRazon">Razon 1 de 100</div>
+                        <div class="txt-razon" id="txtRazon">Me gustan tus hermosos ojos cafes</div>
+                    </div>
+
+                    <div class="botones-razon">
+                        <button class="btn btn-secundario" onclick="moverRazon(-1)">← Anterior</button>
+                        <button class="btn" onclick="moverRazon(1)">Siguiente 💜</button>
+                        <button class="btn btn-secundario" onclick="razonRandom()">Al azar 🎲</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Reflexion -->
+        <section class="seccion">
+            <div class="tarjeta">
+                <div class="subtitulo">Algo que quiero que recuerdes 💜</div>
+                <div class="texto-carta">
+                    <p>No se cuanto tiempo nos quede por delante, pero si hay algo que tengo claro, es que quiero aprovechar cada momento que pueda compartir contigo</p>
+                    <p>No quiero que lo bonito entre nosotros se quede solamente en palabras o en recuerdos, quiero seguir creando momentos que algun dia podamos mirar hacia atras y recordar con una sonrisa</p>
+                    <p class="destacado">Quiero que lo que venga despues tambien sea parte de nuestra historia</p>
+                    <p>Porque al final, no se trata de contar cuanto tiempo llevamos, sino de todo lo que podemos llegar a vivir durante ese tiempo</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Secreto -->
+        <section class="seccion">
+            <div class="tarjeta" style="text-align: center;">
+                <div class="subtitulo">Una ultima cosa...</div>
+                <button class="btn" onclick="abrirSecreto()">Abrir 💌</button>
+
+                <div id="secreto">
+                    <br>
+                    Si llegaste hasta aqui, queria dejarte una ultima cosa:
+                    <br><br>
+                    No importa cuanto tiempo pase ni cuantas cosas tengamos que superar, siempre voy a guardar con mucho cariño todo lo que hemos vivido
+                    <br><br>
+                    <strong style="color: #e9d5ff; font-size: 18px;">Te quiero, Michelle, y espero que podamos seguir escribiendo nuestra historia juntos 💜</strong>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <div class="footer">
+            <h2>Te quiero, mi niña linda 💜</h2>
+            <p>
+                Gracias por estar aqui y por permitirme seguir compartiendo momentos contigo
+                <br><br>
+                Esta pagina es solamente una pequeña forma de recordarte lo importante que eres para mi
+            </p>
+            <div class="credito">Hecho especialmente para Michelle 💜</div>
+        </div>
+
+    </main>
+
+    <script>
+        // SPOTIFY
+        const linkSpotify = "https://open.spotify.com/playlist/786RiWnYfyxfXLB8nNBLAV"; 
+
+        function ponerSpotify() {
+            let id = "786RiWnYfyxfXLB8nNBLAV";
+            let esPlaylist = linkSpotify.includes("/playlist/");
+
+            if (linkSpotify.includes("spotify.com")) {
+                const partes = linkSpotify.split("?")[0].split("/");
+                id = partes[partes.length - 1];
+            }
+
+            const tipo = esPlaylist ? "playlist" : "track";
+            const iframe = `<iframe style="border-radius:12px" src="https://open.spotify.com/embed/${tipo}/${id}?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`;
+            
+            document.getElementById("spotifyPlayer").innerHTML = iframe;
+        }
+
+        // MENSAJES ALEATORIOS PARA LOS SOBRES
+        const mensajesSobres = {
+            malDia: [
+                "Recuerda que no estas sola, los dias dificiles pasan y tu eres mucho mas fuerte de lo que crees, respira profundo, tomate un momento y acuerdate de que aqui estoy para ti siempre que lo necesites 💜",
+                "Se que a veces las cosas se sienten pesadas, pero tomate una pausa, no tienes que resolver todo hoy, aqui voy a estar siempre que quieras desahogarte o simplemente distraerte un rato 🌸",
+                "Aunque hoy haya sido un mal dia, eso no arruina lo increible que eres, date un abrazo de mi parte, descansa y recuerda que mañana es una oportunidad nueva ✨"
+            ],
+            extranes: [
+                "Si me estas extrañando, acuerdate de que yo tambien estoy pensando en ti, mandame un mensaje o un audio sin importar la hora, me encanta saber de ti 💞",
+                "Yo tambien te extraño bastante, acuerdate de algun momento bonito que hayamos tenido o de alguna risa juntos, y escribeme en cuanto leas esto 🧸",
+                "Cada que me extrañes, recuerda que estas presente en mi mente casi todo el tiempo, aqui estoy siempre a un mensajito de distancia 💜"
+            ],
+            dormir: [
+                "Cierra los ojos, deja ir los pensamientos pesados y recuerda un momento bonito que hayamos vivido juntos, espero que sueñes con algo lindo hoy, descansa mi niña 💜",
+                "Apaga la mente un ratito, abraza tu almohada y pon tu cancion favorita, deseo que descanses mucho y tengas la noche mas tranquila 🌙",
+                "Si la mente no se apaga, no te preocupes ni te desesperes, respira despacio y siente la tranquilidad de que mañana sera un bonito dia, que descanses 😴✨"
+            ],
+            dudas: [
+                "Nunca dudes de lo especial que eres para mi, tienes una forma unica de ser que ilumina todo a tu alrededor, gracias por ser tu y por formar parte de mi vida 💖",
+                "Si alguna vez dudas de tu valor, dejame recordarte que eres una persona increible, inteligente y con un corazon hermoso, nunca olvides lo mucho que vales 🌟",
+                "Eres muy importante para mi y para la gente que te rodea, tu sola presencia cambia los dias de los demas para bien, nunca lo olvides 💜"
+            ]
+        };
+
+        function abrirSobreDinamico(el, categoria) {
+            const txt = el.querySelector(".sobre-texto");
+            
+            if (txt.style.display !== "block") {
+                const lista = mensajesSobres[categoria];
+                const mensajeAleatorio = lista[Math.floor(Math.random() * lista.length)];
+                txt.innerText = mensajeAleatorio;
+                txt.style.display = "block";
+            } else {
+                txt.style.display = "none";
+            }
+        }
+
+        // LISTA 100 RAZONES
+        const razones = [
+            { id: 1, text: "Me gustan tus hermosos ojos cafes" },
+            { id: 2, text: "Me gusta tu linda carita" },
+            { id: 3, text: "Me gusta cada uno de tus lunares, sean reales o falsos" },
+            { id: 4, text: "Me encanta esa linda sonrisa tuya" },
+            { id: 5, text: "Me encantan tus pestañas porque resaltan muchisimo tus ojos" },
+            { id: 6, text: "Me gustan tus labios que tantas ganas me dan de besar" },
+            { id: 7, text: "Me encanta tu divina figura" },
+            { id: 8, text: "Me gusta el olor de tu perfume" },
+            { id: 9, text: "Amo tus abrazos" },
+            { id: 10, text: "Amo tus te quiero" },
+            { id: 11, text: "Me encantan tus increibles outfits" },
+            { id: 12, text: "Me gusta pensar en ti mientras escucho canciones" },
+            { id: 13, text: "Me gusta pensar en ti en cualquier momento del dia" },
+            { id: 14, text: "Me gusta hacerte detalles como este" },
+            { id: 15, text: "Me gusta escribirte cartas y saber que las lees" },
+            { id: 16, text: "Me gusta comprarte tus flores favoritas porque son igual de lindas que tu" },
+            { id: 17, text: "Me gusta tu cinturita" },
+            { id: 18, text: "Me gusta la confianza que me tienes" },
+            { id: 19, text: "Me gusta todo el cariño que me das" },
+            { id: 20, text: "Me encanta tu hermoso pelo negro" },
+            { id: 21, text: "Me gusta tu carisma" },
+            { id: 22, text: "Me gusta tu personalidad" },
+            { id: 23, text: "Me gusta tu mentalidad" },
+            { id: 24, text: "Me gustan tus ideales" },
+            { id: 25, text: "Me gustan tus ideas y planes a futuro" },
+            { id: 26, text: "Me gusta que defiendas aquello en lo que crees" },
+            { id: 27, text: "Me gusta que tengas tus propias ideas y no tengas miedo de defenderlas" },
+            { id: 28, text: "Me gusta cuanto amas a tus amigos" },
+            { id: 29, text: "Me gusta cuanto amas a tu familia" },
+            { id: 30, text: "Me gusta tu paciencia" },
+            { id: 31, text: "Raro, pero me gusta que seas delgadita" },
+            { id: 32, text: "Me gusta que seas morenita" },
+            { id: 33, text: "Me gusta cargarte, porque significa que puedo cargar mi mundo entre mis brazos" },
+            { id: 34, text: "Amo que me ames" },
+            { id: 35, text: "Me encanta platicar contigo hasta la madrugada" },
+            { id: 36, text: "Amo escuchar tus historias" },
+            { id: 37, text: "Me gusta tu capacidad intelectual" },
+            { id: 38, text: "Me gusta hasta la manera en que mientas la madre" },
+            { id: 39, text: "Me gusta que entiendas mi humor" },
+            { id: 40, text: "Me gusta que entiendas mis referencias" },
+            { id: 41, text: "Me gusta que pueda hablar contigo de tantas cosas" },
+            { id: 42, text: "Me gusta que nuestras conversaciones puedan durar horas" },
+            { id: 43, text: "Me gusta cuando una conversacion contigo hace que pierda la nocion del tiempo" },
+            { id: 44, text: "Me gusta escuchar lo que piensas" },
+            { id: 45, text: "Me gusta conocer tu manera de ver las cosas" },
+            { id: 46, text: "Me gusta cuando me cuentas algo que te emociona" },
+            { id: 47, text: "Me gusta cuando me haces parte de tus pensamientos" },
+            { id: 48, text: "Me gusta sentir que puedo ser yo mismo contigo" },
+            { id: 49, text: "Me gusta la confianza que hemos construido" },
+            { id: 50, text: "Me gusta que contigo pueda hablar tanto de cosas serias como de las mayores tonterias" },
+            { id: 51, text: "Me gusta cuando me haces sonreir sin siquiera intentarlo" },
+            { id: 52, text: "Me gusta que tu sonrisa termine provocando la mia" },
+            { id: 53, text: "Me gusta ver tus bellos ojos y que todavia logren hacerme sonrojar a pesar de ser prieto" },
+            { id: 54, text: "Me gusta cuando me haces sentir querido" },
+            { id: 55, text: "Me gusta cuando me haces sentir importante para ti" },
+            { id: 56, text: "Me gusta saber que puedo contarte cosas" },
+            { id: 57, text: "Me gusta que me escuches" },
+            { id: 58, text: "Me gusta escuchar cuando tu necesitas contarme algo" },
+            { id: 59, text: "Me gusta conocer cada vez mas de ti" },
+            { id: 60, text: "Me gusta descubrir pequeños detalles tuyos que antes no conocia" },
+            { id: 61, text: "Me gusta recordar cosas que hemos vivido juntos" },
+            { id: 62, text: "Me gusta recordar nuestras conversaciones" },
+            { id: 63, text: "Me gusta pensar en todos los momentos que todavia nos faltan vivir" },
+            { id: 64, text: "Me gusta imaginar lugares a los que podriamos viajar juntos" },
+            { id: 65, text: "Me gusta imaginar todas las cosas que podriamos hacer juntos" },
+            { id: 66, text: "Me gusta imaginar una vida contigo" },
+            { id: 67, text: "Me gusta pensar en un futuro donde sigamos estando juntos" },
+            { id: 68, text: "Me gusta imaginar que algun dia podremos mirar hacia atras y recordar todo lo que vivimos para llegar hasta ahi" },
+            { id: 69, text: "Me gusta la idea de poder compartir mi vida contigo" },
+            { id: 70, text: "Me gusta pensar que todavia tenemos muchisimas historias por escribir" },
+            { id: 71, text: "Me gusta hacerte feliz, aunque sea con un detalle pequeño" },
+            { id: 72, text: "Me gusta buscar maneras de demostrarte lo mucho que te quiero" },
+            { id: 73, text: "Me gusta cuando un detalle mio logra sacarte una sonrisa" },
+            { id: 74, text: "Me gusta escribirte cosas que quiza no siempre se como decirte hablando" },
+            { id: 75, text: "Me gusta poder convertir todo lo que siento por ti en palabras" },
+            { id: 76, text: "Me gusta dedicarte canciones porque muchas veces encuentro en ellas cosas que me hacen pensar en ti" },
+            { id: 77, text: "Me gusta cuando una cancion empieza y automaticamente me acuerdo de ti" },
+            { id: 78, text: "Me gusta que existan canciones que ahora tienen un significado diferente simplemente porque me recuerdan a ti" },
+            { id: 79, text: "Me gusta tener recuerdos contigo que puedo guardar para siempre" },
+            { id: 80, text: "Me gusta que incluso las cosas mas sencillas puedan sentirse especiales cuando estoy contigo" },
+            { id: 81, text: "Me gusta tu forma de hacer que una conversacion normal termine siendo algo que recuerdo durante horas" },
+            { id: 82, text: "Me gusta tu forma de expresarte" },
+            { id: 83, text: "Me gusta tu manera de decir las cosas" },
+            { id: 84, text: "Me gusta tu sentido del humor" },
+            { id: 85, text: "Me gusta cuando coincidimos en alguna tonteria y terminamos riendonos por eso" },
+            { id: 86, text: "Me gusta que podamos ser cursis sin que importe demasiado lo ridiculo que podamos llegar a vernos" },
+            { id: 87, text: "Me gusta poder decirte cuanto te quiero" },
+            { id: 88, text: "Me gusta escuchar cuanto me quieres tu" },
+            { id: 89, text: "Me gusta saber que hay cariño entre nosotros" },
+            { id: 90, text: "Me gusta la manera en que haces que mi mundo se sienta un poquito mas bonito" },
+            { id: 91, text: "Me gusta que seas tu con todo lo bonito, lo complicado, lo raro y lo unico que te hace ser Michelle" },
+            { id: 92, text: "Me gusta que no seas perfecta porque no necesito que lo seas para quererte" },
+            { id: 93, text: "Me gustan tus pequeños detalles, incluso esos que probablemente tu ni siquiera consideras importantes" },
+            { id: 94, text: "Me gusta todo aquello que te hace diferente a cualquier otra persona" },
+            { id: 95, text: "Me gusta que seas la persona en la que pienso cuando quiero compartir algo que me emociona" },
+            { id: 96, text: "Me gusta que seas una de las primeras personas que quiero tener cerca cuando me pasa algo" },
+            { id: 97, text: "Me gusta que despues de todo lo que hemos vivido todavia pueda mirarte y pensar que eres la persona con la que quiero seguir construyendo algo" },
+            { id: 98, text: "Me gusta todo lo que hemos aprendido el uno del otro" },
+            { id: 99, text: "Me gusta saber que todavia puedo seguir conociendote y encontrar nuevas razones para quererte" },
+            { id: 100, text: "Y sobre todo me gustas tu: no solamente tus ojos, tu sonrisa, tu cabello o todo lo bonito que tienes, sino tu completa, con tu forma de ser, de pensar, de querer, de reirte, de enojarte y de existir, porque podria escribir otras cien cosas y probablemente todavia me faltarian muchas para explicar todo lo que me haces sentir" }
+        ];
+
+        let index = 0;
+
+        function irA(id) {
+            document.getElementById(id).scrollIntoView({ behavior: "smooth" });
+        }
+
+        function abrirSecreto() {
+            const sec = document.getElementById("secreto");
+            sec.style.display = (sec.style.display === "block") ? "none" : "block";
+        }
+
+        function renderRazon() {
+            const r = razones[index];
+            const card = document.getElementById("cardRazon");
+            
+            card.style.opacity = 0;
+            card.style.transform = "translateY(5px)";
+
+            setTimeout(() => {
+                document.getElementById("numRazon").innerText = `Razon ${r.id} de 100`;
+                document.getElementById("txtRazon").innerText = r.text;
+                document.getElementById("barraFill").style.width = `${((index + 1) / 100) * 100}%`;
+                
+                card.style.opacity = 1;
+                card.style.transform = "translateY(0)";
+            }, 150);
+        }
+
+        function moverRazon(dir) {
+            index += dir;
+            if (index < 0) index = razones.length - 1;
+            if (index >= razones.length) index = 0;
+            renderRazon();
+        }
+
+        function razonRandom() {
+            let nuevoIndex;
+            do {
+                nuevoIndex = Math.floor(Math.random() * razones.length);
+            } while (nuevoIndex === index);
+            index = nuevoIndex;
+            renderRazon();
+        }
+
+        window.onload = function() {
+            ponerSpotify();
+            renderRazon();
+        };
+    </script>
+
+</body>
+</html>
